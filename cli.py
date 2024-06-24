@@ -106,7 +106,6 @@ def copy_entry(connection: mysql.CMySQLConnection, text: str, from_db, to_db):
     entry = cursor.fetchall()
     # chnages the first elements of the list of tuple to the new feed_id
     entry = [(feed_id,) + e[1:] for e in entry]
-    print(entry)
     cursor.executemany(f"INSERT INTO {to_db}.posts (feed_id, url, origin_id) VALUES (%s, %s, %s)", entry)
     connection.commit()
 
