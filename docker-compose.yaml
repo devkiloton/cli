@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_DATABASE: db
+      MYSQL_USER: admin
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD:
+    ports:
+      - 33066:3306
+    volumes:
+       - .docker/setup.sql:/docker-entrypoint-initdb.d/setup.sql
+volumes:
+    db_data:
